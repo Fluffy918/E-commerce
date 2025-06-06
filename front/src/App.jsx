@@ -3,6 +3,7 @@ import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext.jsx';
 import { CartProvider } from './contexts/CartContext.jsx';
 import Login from './pages/Login.jsx';
+import Home from './pages/Home.jsx';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
           <Router>
             <main>
               <Routes>
-                <Route path="/" element={<h1>Home Page</h1>} />
+                <Route path="/" element={<Home/>} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register" element={<h1>Register Page</h1>} />
                 <Route path="/cart" element={<h1>Cart Page</h1>} />
