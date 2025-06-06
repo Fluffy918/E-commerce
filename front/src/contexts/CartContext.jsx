@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext()
 
-export function CartContext({ children }) {
+export function CartProvider({ children }) {
     // On stocke le panier dans localStorage pour persistance
     const [cartItems, setCartItems] = useState(
         JSON.parse(localStorage.getItem('cart')) || []
