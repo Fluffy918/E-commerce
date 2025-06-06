@@ -1,6 +1,6 @@
 import productModel from '../models/product.model.js';
 
-exports.getProducts = async (req, res, next) => {
+async function getProducts(req, res, next){
     try {
         const products = await productModel.getAllProducts()
         res.json(products)
@@ -9,7 +9,7 @@ exports.getProducts = async (req, res, next) => {
     }
 }
 
-exports.getProduct = async (req, res, next) => {
+async function getProduct(req, res, next){
     try {
         const product = await productModel.getProductById(req.params.id)
         if (!product) return res.status(404).json({ message: 'Produit non trouvé'})
@@ -19,7 +19,7 @@ exports.getProduct = async (req, res, next) => {
     }
 }
 
-exports.createProduct = async (req, res, next) => {
+async function createProduct(req, res, next){
     try {
         const newProductId = await productModel.createProduct(req.body)
         res.status(201).json({ id: newProductId, ...req.body })
@@ -28,7 +28,7 @@ exports.createProduct = async (req, res, next) => {
     }
 }
 
-exports.updateProduct = async (req, res, next) => {
+async function updateProduct(req, res, next){
     try {
         await productModel.updateProduct(req.params.id, req.body)
         res.json({ message: 'Produit mis à jour'})
@@ -37,7 +37,7 @@ exports.updateProduct = async (req, res, next) => {
     }
 }
 
-exports.deleteProduct = async (req, res, next) => {
+async function deleteProduct(req, res, next){
     try {
         await productModel.deleteProduct(req.params.id)
         res.json({ message: 'Produit supprimé'})
@@ -45,3 +45,11 @@ exports.deleteProduct = async (req, res, next) => {
         next(err)
     }
 }
+
+export default {
+    getProducts,
+    getProduct,
+    createProduct,
+    updateProduct,
+    deleteProduct
+};

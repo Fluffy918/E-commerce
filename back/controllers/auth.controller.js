@@ -1,22 +1,22 @@
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import userModel from '../models/user.model.js';
 import { isEmailValid, hasMinimumLength } from '../utils/validators.js';
 import { validationError } from '../utils/helpers.js';
 import { config } from 'dotenv';
 
-exports.register = async (req, res, next) => {
+async function register(req, res, next){
     try {
         const { email, password } = req.body;
-        const existingUser = await userModel.findByEmail(email)
-        if (existingUser) {
-            return res.status(400).json({ message: 'Cet email est déjà utilisé'})
-        }
         if (!isEmailValid(email)) {
             return next(validationError('Email invalide'));
         }
         if (!hasMinimumLength(password, 8)) {
             return next(validationError('Le mot de passe doit contenir au moins 8 caractères'));
+        }
+        const existingUser = await userModel.findByEmail(email)
+        if (existingUser) {
+            return res.status(400).json({ message: 'Cet email est déjà utilisé'})
         }
         const newUser = await userModel.createUser(email, password)
         res.status(201).json({ id: newUser.id, email: newUser.email, role: newUser.role })
@@ -25,7 +25,7 @@ exports.register = async (req, res, next) => {
     }
 }
 
-exports.login = async (req, res, next) => {
+async function login(req, res, next){
     try {
         const { email, password } = req.body
         const user = await userModel.findByEmail(email)
@@ -42,3 +42,10 @@ exports.login = async (req, res, next) => {
         next(err)
     }
 }
+
+export default {
+    register,
+    login
+};
+
+config(); // Ensure environment variables are loaded before using them

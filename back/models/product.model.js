@@ -1,16 +1,16 @@
 import pool from '../config/db.js'
 
-exports.getAllProducts = async () => {
+async function getAllProducts(){
     const [rows] = await pool.query('SELECT * FROM products')
     return rows;
 }
 
-exports.getProductById = async (id) => {
+async function getProductById(id){
     const [row] = await pool.query('SELECT * FROM products WHERE id = ?', [id]);
     return row[0];
 }
 
-exports.createProduct = async ({ name, description, price, image_url, stock, category }) => {
+async function createProduct({ name, description, price, image_url, stock, category }){
     const [result] = await pool.query(
         `INSERT INTO products (name, description, price, image_url, stock, category)
         VALUES (?, ?, ?, ?, ?, ?)`,
@@ -19,7 +19,7 @@ exports.createProduct = async ({ name, description, price, image_url, stock, cat
     return result.insertID;
 }
 
-exports.updateProduct = async (id, fields) => {
+async function updateProduct(id, fields){
     const setClause = []
     const values = []
     for (let key in fields) {
@@ -31,6 +31,14 @@ exports.updateProduct = async (id, fields) => {
     await pool.query(sql, values)
 }
 
-exports.deleteProduct = async (id) => {
+async function deleteProduct(id){
     await pool.query('DELETE FROM products WHERE id = ?', [id])
 }
+
+export default {
+    getAllProducts,
+    getProductById,
+    createProduct,
+    updateProduct,
+    deleteProduct
+};
