@@ -1,5 +1,15 @@
 import mysql from 'mysql2/promise';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
+
+
+dotenv.config();
+
+console.log('Tentative de connexion MySQL avec :',
+    process.env.DB_HOST,
+    process.env.DB_USER,
+    process.env.DB_NAME
+);
+
 
 export const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -12,6 +22,6 @@ export const pool = mysql.createPool({
 });
 
 
-config();
+
 
 export default pool;
