@@ -2,10 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 
-const authRoutes = require('./routes/auth.routes');
-const productRoutes = require('./routes/product.routes');
-const orderRoutes = require('./routes/order.routes');
-const errorMiddleware = require('./middlewares/error.middleware');
+import authRoutes from './routes/auth.routes.js';
+import productRoutes from './routes/product.routes.js';
+import orderRoutes from './routes/order.routes.js';
+import errorMiddleware from './middlewares/error.middleware.js';
 
 const app = express();
 
@@ -23,3 +23,5 @@ app.use(errorMiddleware);
 
 module.exports = app;
 config();
+
+export default app;
