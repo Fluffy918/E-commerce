@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import userModel from '../models/user.model.js';
+import { isEmailValid, hasMinimumLength } from '../utils/validators.js';
+import { validationError } from '../utils/helpers.js';
 import { config } from 'dotenv';
 
 exports.register = async (req, res, next) => {
@@ -9,6 +11,12 @@ exports.register = async (req, res, next) => {
         const existingUser = await userModel.findByEmail(email)
         if (existingUser) {
             return res.status(400).json({ message: 'Cet email est déjà utilisé'})
+        }
+        if (!isEmailValid(email)) {
+            return next(validationError('Email invalide'));
+        }
+        if (!hasMinimumLength(password, 8)) {
+            return next(validationError('Le mot de passe doit contenir au moins 8 caractères'));
         }
         const newUser = await userModel.createUser(email, password)
         res.status(201).json({ id: newUser.id, email: newUser.email, role: newUser.role })
