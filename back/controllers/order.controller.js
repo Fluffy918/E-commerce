@@ -1,6 +1,6 @@
 import orderModel from '../models/order.model.js';
 
-async function createOrder(req, res, next){
+export async function createOrder(req, res, next){
     try {
         const userId = req.user.id
         const { total_amount, items } = req.body
@@ -14,7 +14,7 @@ async function createOrder(req, res, next){
     }
 }
 
-async function getUserOrders(req, res, next){
+export async function getUserOrders(req, res, next){
     try {
         const userId = req.user.id
         const orders = await orderModel.getOrdersByUser(userId)

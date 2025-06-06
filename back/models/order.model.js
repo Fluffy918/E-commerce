@@ -1,6 +1,6 @@
 import pool from '../config/db.js';
 
-async function createOrder(user_id, total_amount, items){
+export async function createOrder(user_id, total_amount, items){
     // Insérer la commande (orders)
     const [orderResult] = await pool.query(
         'INSERT INTO orders (user_id, total_amount) VALUES (?, ?)',
@@ -21,7 +21,7 @@ async function createOrder(user_id, total_amount, items){
     return orderId
 }
 
-async function getOrdersByUser(user_id){
+export async function getOrdersByUser(user_id){
     const [orders] = await pool.query(
         'SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC',
         [user_id]

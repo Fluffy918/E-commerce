@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { config } from 'dotenv';
 
-function verifyToken(req, res, next){
+export function verifyToken(req, res, next){
     const authHeader = req.headers['authorization'];
     if (!authHeader) return res.status(401).json({ message: 'No token provided' });
 
@@ -15,7 +15,7 @@ function verifyToken(req, res, next){
     })
 } 
 
-function isAdmin(req, res, next){
+export function isAdmin(req, res, next){
     if (!req.user || req.user.role !== 'admin') {
         return res.status(403).json({ message: 'Accès refusé, rôle admin requis'})
     }

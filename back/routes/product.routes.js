@@ -1,6 +1,7 @@
 import express from 'express';
 import productController from '../controllers/product.controller.js';
 import { verifyToken, isAdmin } from '../middlewares/auth.middleware.js';
+
 const router = express.Router();
 
 // Get /api/products   -> accessible à tous

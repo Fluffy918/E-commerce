@@ -5,7 +5,7 @@
  * @returns {boolean}
  */
 
-function hasMinimumLength(str, len) {
+export function hasMinimumLength(str, len) {
     return typeof str === 'string' && str.length >= len
 }
 
@@ -15,7 +15,7 @@ function hasMinimumLength(str, len) {
  * @returns {boolean}
  */
 
-function isEmailValid(email){
+export function isEmailValid(email){
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email)
 }

@@ -21,7 +21,7 @@ app.use('/api/orders', orderRoutes);
 // Middleware de gestion des erreurs
 app.use(errorMiddleware);
 
-module.exports = app;
+
 config();
 
 export default app;

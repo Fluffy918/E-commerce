@@ -9,7 +9,7 @@
  * @returns {{statusCode: number, message: string}}
  */
 
-function validationError(field, message) {
+export function validationError(field, message) {
     return {
         statusCode: 400,
         message: `Le champ '${field} est invalide: ${message}`
