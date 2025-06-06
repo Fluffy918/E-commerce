@@ -8,7 +8,7 @@ function ProductCard({ product }) {
                     <img 
                         src={product.image_url} 
                         alt={product.name} 
-                        style={stylesimage}
+                        style={styles.image}
                     />
                     <h3 style={styles.name}>{product.name}</h3>
                     <p style={styles.price}>{product.price.toFixed(2)} €</p>
