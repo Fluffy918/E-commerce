@@ -7,6 +7,6 @@ const router = express.Router();
 router.post('/', verifyToken, orderController.createOrder);
 
 // GET /api/orders  -> récupérer toutes les commandes du user connecté
-router.get('/', verifyToken, orderController.getOrdersByUser);
+router.get('/', verifyToken, isAdmin, orderController.getOrdersByUser);
 
-module.exports = router
+export default router;

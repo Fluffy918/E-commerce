@@ -18,4 +18,4 @@ router.put('/:id', verifyToken, isAdmin, productController.updateProduct);
 // DELETE /api/products/:id   -> admin seulement
 router.delete('/:id', verifyToken, isAdmin, productController.deleteProduct);
 
-module.exports = router
+export default router;
