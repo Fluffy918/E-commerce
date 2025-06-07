@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register as registerService} from "../services/auth.service.js";
 
-function register() {
+function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -87,3 +87,5 @@ const styles = {
     }
 
 }
+
+export default Register;
