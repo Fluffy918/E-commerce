@@ -7,12 +7,6 @@ function AdminProductForm() {
     const { user } = useContext(AuthContext)
     const { id } = useParams();
     const navigate = useNavigate();
-
-    // Sécurité : seul l’admin peut accéder
-    if (!user || user.role !== 'admin') {
-        return <p style={styles.accesDenied}>Accès refusé: réservé aux administrateurs</p>
-    }
-
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -23,6 +17,11 @@ function AdminProductForm() {
     })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('');
+
+    // Sécurité : seul l’admin peut accéder
+    if (!user || user.role !== 'admin') {
+        return <p style={styles.accesDenied}>Accès refusé: réservé aux administrateurs</p>
+    }
 
     // Si on est en mode édition, on charge le produit
 
