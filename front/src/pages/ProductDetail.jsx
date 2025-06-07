@@ -94,3 +94,5 @@ const styles = {
         marginTop: '1rem',
     }
 }
+
+export default ProductDetail;
