@@ -40,7 +40,7 @@ function ProductDetail() {
             <div style={styles.details}>
                 <h2 style={styles.name}>{product.name}</h2>
                 <p style={styles.description}>{product.description}</p>
-                <p style={styles.price}>Prix: {product.price.toFixed(2)}&rbrace</p>
+                <p style={styles.price}>Prix: {parseFloat(product.price).toFixed(2)} €</p>
                 <button onClick={() => addToCart(product)} style={styles.addButton}>
                     Ajouter au panier
                 </button>

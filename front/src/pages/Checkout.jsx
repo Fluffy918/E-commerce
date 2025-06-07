@@ -46,7 +46,7 @@ function Checkout() {
         <div style={styles.container}>
             <h2 style={styles.title}>Confirmation de la commande</h2>
             {error && <p style={styles.error}>{error}</p>}
-            <p style={styles.summaryText}>Montant total: {totalAmount.toFixed(2)} €</p>
+            <p style={styles.summaryText}>Montant total: {parseFloat(totalAmount).toFixed(2)} €</p>
             <button
                 onClick={handleOrder}
                 disabled={loading || cartItems.length === 0}

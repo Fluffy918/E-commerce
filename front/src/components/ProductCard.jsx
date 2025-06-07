@@ -11,7 +11,7 @@ function ProductCard({ product }) {
                         style={styles.image}
                     />
                     <h3 style={styles.name}>{product.name}</h3>
-                    <p style={styles.price}>{product.price.toFixed(2)} €</p>
+                    <p style={styles.price}>{parseFloat(product.price).toFixed(2)} €</p>
                 </Link>
             </div>
         
