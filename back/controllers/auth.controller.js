@@ -31,12 +31,15 @@ async function login(req, res, next){
         const user = await userModel.findByEmail(email)
         if (!user) return res.status(401).json({ message: 'Adresse email ou mot de passe incorrect'})
         
-        const bcrypt = require('bcryptjs')
+        
         const valid = await bcrypt.compare(password, user.password_hash)
         if (!valid) return res.status(401).json({ message: 'Adresse email ou mot de passe incorrect'})
         
-        const payload = { id: user.id, role: user.role }
-        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' })
+        const token = jwt.sign(
+            { id: user.id, role: user.role},
+            process.env.JWT_SECRET,
+            { expiresIn: '24h' }
+        )
         res.json({ token, user: { id: user.id, email: user.mail, role: user.role}})
     } catch (err) {
         next(err)
