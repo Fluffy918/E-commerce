@@ -18,10 +18,7 @@ function AdminProductForm() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('');
 
-    // Sécurité : seul l’admin peut accéder
-    if (!user || user.role !== 'admin') {
-        return <p style={styles.accesDenied}>Accès refusé: réservé aux administrateurs</p>
-    }
+    
 
     // Si on est en mode édition, on charge le produit
 
@@ -37,6 +34,11 @@ function AdminProductForm() {
                 })
         }
     }, [id])
+
+    // Sécurité : seul l’admin peut accéder
+    if (!user || user.role !== 'admin') {
+        return <p style={styles.accesDenied}>Accès refusé: réservé aux administrateurs</p>
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target

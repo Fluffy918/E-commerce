@@ -50,7 +50,7 @@ function Checkout() {
             <button
                 onClick={handleOrder}
                 disabled={loading || cartItems.length === 0}
-                style={styels.orderBtn}
+                style={styles.orderBtn}
             >
                 {loading ? 'Traitement...': 'Valider ma commande'}
             </button>

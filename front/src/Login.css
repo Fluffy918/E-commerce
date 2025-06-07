@@ -33,6 +33,7 @@
 
 .login-form button:hover {
   background: #005bb5;
+  color: #fff;
 }
 
 .login-form p.error {
