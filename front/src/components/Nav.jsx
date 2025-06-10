@@ -3,16 +3,16 @@ import { NavLink } from "react-router-dom";
 function Nav() {
     return (
         <nav>
-            <NavLink to="/" style={styles.link} activeStyle={styles.activeLin}>
+            <NavLink to="/" style={styles.link} activeStyle={styles.activeLink}>
                 Accueil
             </NavLink>
-            <NavLink to="/cart" style={styles.link} activeStyle={styles.activeLin}>
+            <NavLink to="/cart" style={styles.link} activeStyle={styles.activeLink}>
                 Panier
             </NavLink>
-            <NavLink to="/login" style={styles.link} activeStyle={styles.activeLin}>
+            <NavLink to="/login" style={styles.link} activeStyle={styles.activeLink}>
                 Connexion
             </NavLink>
-            <NavLink to="/register" style={styles.link} activeStyle={styles.activeLin}>
+            <NavLink to="/register" style={styles.link} activeStyle={styles.activeLink}>
                 Inscription
             </NavLink>
         </nav>

@@ -1,11 +1,21 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { CartContext } from "../contexts/CartContext";
+import { Menu, X, Search} from "lucide-react"
 
 function Header() {
     const { user, logout } = useContext(AuthContext)
     const { cartItems } = useContext(CartContext)
+    const [searchQuery, setSearchQuery] = useState("")
+    const navigate = useNavigate()
+
+    function handleSearch() {
+        if (searchQuery.trim()) {
+            navigate(`/?search=${encodeURIComponent(searchQuery.trim())}`)
+        }
+    }
+
 
     return(
         <header style={styles.header}>
@@ -15,6 +25,16 @@ function Header() {
                     Panier ({cartItems.length})
                 </Link>
             </nav>
+
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                handleSearch()
+            }} style={styles.searchContainer}>
+                <input type="text" placeholder="Rechercher un article..." style={styles.search} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                <button onClick={handleSearch} className="hidden md:block hover:text-gray-300 transition">
+                    <Search size={24}/>
+                </button>
+            </form>
 
             <nav style={styles.navRight}>
                 {user ? (
@@ -69,6 +89,18 @@ const styles = {
         border: 'none',
         borderRadius: '4px',
         cursor: 'pointer',
+    },
+    searchContainer: {
+        display: 'flex',
+        alignItems: 'cenetr',
+        gap: '05rem',
+    },
+    search: {
+        padding: '0.4rem 0.6rem',
+        borderRadius: '5px',
+        border: 'none',
+        background: '#374151',
+        color: '#fff'
     }
 }
 
